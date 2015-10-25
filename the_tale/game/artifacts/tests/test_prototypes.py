@@ -18,8 +18,6 @@ from the_tale.game.logic import create_test_map, DEFAULT_HERO_EQUIPMENT
 
 from the_tale.game.mobs import relations as mobs_relations
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.artifacts import exceptions
 from the_tale.game.artifacts.storage import artifacts_storage
 from the_tale.game.artifacts.prototypes import ArtifactRecordPrototype, ArtifactPrototype

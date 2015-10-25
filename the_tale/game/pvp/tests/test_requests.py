@@ -17,8 +17,6 @@ from the_tale.accounts.logic import register_user, login_page_url
 
 from the_tale.game.logic import create_test_map
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.pvp.models import Battle1x1, BATTLE_1X1_STATE
 from the_tale.game.pvp.tests.helpers import PvPTestsMixin
 from the_tale.game.pvp.abilities import ABILITIES

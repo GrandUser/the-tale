@@ -23,7 +23,6 @@ from the_tale.forum.models import Post
 
 from the_tale.linguistics.tests import helpers as linguistics_helpers
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game.map.places.storage import places_storage
 from the_tale.game.map.places.relations import RESOURCE_EXCHANGE_TYPE

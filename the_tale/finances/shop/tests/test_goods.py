@@ -23,8 +23,6 @@ from the_tale.finances.shop import exceptions
 from the_tale.finances.shop.relations import PERMANENT_PURCHASE_TYPE
 from the_tale.finances.shop.conf import payments_settings
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 
 class PremiumDaysTests(testcase.TestCase):
 

@@ -13,7 +13,6 @@ from the_tale.game.logic import create_test_map
 from the_tale.game import relations as game_relations
 
 from the_tale.game.map.relations import TERRAIN
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game import relations as game_relations
 

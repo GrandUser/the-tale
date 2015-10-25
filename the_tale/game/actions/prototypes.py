@@ -14,7 +14,7 @@ from the_tale.common.utils import logic as utils_logic
 from the_tale.game.prototypes import TimePrototype
 
 from the_tale.game.heroes import relations as heroes_relations
-from the_tale.game.heroes import prototypes as heroes_prototypes
+from the_tale.game.heroes import logic as heroes_logic
 
 from the_tale.game.balance import constants as c, formulas as f
 
@@ -83,7 +83,6 @@ class ActionBase(object):
     HABIT_MODE = relations.ACTION_HABIT_MODE.PEACEFUL
 
     def __init__(self,
-                 hero,
                  bundle_id,
                  state,
                  percents=0.0,
@@ -111,7 +110,7 @@ class ActionBase(object):
 
         self.updated = False
 
-        self.hero = hero
+        self.hero = None
 
         self.description = description
 
@@ -202,8 +201,8 @@ class ActionBase(object):
         return data
 
     @classmethod
-    def deserialize(cls, hero, data):
-        return cls(hero=hero, **data)
+    def deserialize(cls, data):
+        return cls(**data)
 
     @property
     def ui_type(self): return self.TYPE
@@ -1934,7 +1933,7 @@ class ActionMetaProxyPrototype(ActionBase):
             hero_2 = self.meta_action.hero_2 if self.hero.id == self.meta_action.hero_1_id else self.meta_action.hero_1
         else:
             hero_2_id = self.meta_action.hero_2_id if self.hero.id == self.meta_action.hero_1_id else self.meta_action.hero_1_id
-            hero_2 = heroes_prototypes.HeroPrototype.get_by_id(hero_2_id)
+            hero_2 = heroes_logic.load_hero(hero_2_id)
 
         return {'duelist_1': self.hero,
                 'duelist_2': hero_2}

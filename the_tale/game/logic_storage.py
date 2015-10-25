@@ -8,7 +8,6 @@ from django.conf import settings as project_settings
 
 from dext.common.utils import cache
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 from the_tale.game.heroes.conf import heroes_settings
 
 from the_tale.game import exceptions

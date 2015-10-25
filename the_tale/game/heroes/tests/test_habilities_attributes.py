@@ -11,7 +11,6 @@ from the_tale.game.logic import create_test_map
 from the_tale.game.mobs.prototypes import MobPrototype
 from the_tale.game import relations as game_relations
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 from the_tale.game.heroes.habilities import attributes
 
 

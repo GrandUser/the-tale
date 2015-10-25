@@ -26,7 +26,6 @@ from the_tale.game.persons.models import Person
 from the_tale.game.persons.relations import PERSON_STATE
 from the_tale.game.persons.storage import persons_storage
 
-from the_tale.game.heroes.prototypes import HeroPrototype, HeroPreferencesPrototype
 from the_tale.game.heroes import relations
 from the_tale.game.heroes.postponed_tasks import ChoosePreferencesTask, CHOOSE_PREFERENCES_TASK_STATE
 from the_tale.game.heroes.preferences import HeroPreferences

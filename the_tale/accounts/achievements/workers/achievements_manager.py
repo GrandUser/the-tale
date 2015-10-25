@@ -45,7 +45,6 @@ class Worker(BaseWorker):
 
     def get_achievements_source_iterator(self, achievement):
         from the_tale.accounts.prototypes import AccountPrototype
-        from the_tale.game.heroes.prototypes import HeroPrototype
 
         if achievement.type.source.is_ACCOUNT:
             return (AccountPrototype(model=account_model) for account_model in AccountPrototype._db_all())

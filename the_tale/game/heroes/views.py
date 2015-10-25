@@ -35,12 +35,12 @@ from the_tale.game.relations import HABIT_TYPE
 from the_tale.game.cards import effects as cards_effects
 from the_tale.game.cards import relations as cards_relations
 
-from . import prototypes
 from . import postponed_tasks
 from . import relations
 from . import forms
 from . import conf
 from . import meta_relations
+from . import logic
 
 from the_tale.game.heroes.habilities import relations as habilities_relations
 
@@ -69,7 +69,7 @@ def split_list(items):
 
 class HeroResource(Resource):
 
-    @validate_argument('hero', prototypes.HeroPrototype.get_by_id, 'heroes', u'Неверный идентификатор героя')
+    @validate_argument('hero', logic.load_hero, 'heroes', u'Неверный идентификатор героя')
     def initialize(self, hero=None, *args, **kwargs):
         super(HeroResource, self).initialize(*args, **kwargs)
         self.hero = hero

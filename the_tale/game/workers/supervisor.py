@@ -10,8 +10,6 @@ from the_tale.common import postponed_tasks
 
 from the_tale.accounts.models import Account
 
-from the_tale.game.heroes import prototypes as heroes_prototypes
-
 from the_tale.game import exceptions
 from the_tale.game import prototypes
 from the_tale.game import relations

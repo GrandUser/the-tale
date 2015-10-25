@@ -12,7 +12,6 @@ from the_tale.game import relations as game_relations
 from the_tale.game.persons import storage as persons_storage
 from the_tale.game.persons import relations as persons_relations
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from . import storage
 from . import conf

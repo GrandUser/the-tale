@@ -67,7 +67,6 @@ class AchievementsManagerTests(testcase.TestCase):
 
     @mock.patch('the_tale.accounts.achievements.storage.AchievementsStorage.verify_achievements', lambda *argv, **kwargs: None)
     def test_add_achievements__all_accounts(self):
-        from the_tale.game.heroes.prototypes import HeroPrototype
 
         GiveAchievementTaskPrototype.create(account_id=None, achievement_id=self.achievement_3.id)
 

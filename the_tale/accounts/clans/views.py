@@ -129,7 +129,6 @@ class ClansResource(Resource):
 
     @handler('#clan', name='show')
     def show(self):
-        from the_tale.game.heroes.prototypes import HeroPrototype
 
         roles = {member.account_id:member.role for member in MembershipPrototype.get_list_by_clan_id(self.clan.id)}
         accounts = sorted(AccountPrototype.get_list_by_id(roles.keys()), key=lambda a: (roles[a.id].value, a.nick_verbose))

@@ -10,7 +10,6 @@ from the_tale.accounts.views import validate_fast_account
 from the_tale.accounts.logic import get_system_user
 
 from the_tale.game.heroes.models import Hero
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.accounts.friends.prototypes import FriendshipPrototype
 from the_tale.accounts.friends.forms import RequestForm

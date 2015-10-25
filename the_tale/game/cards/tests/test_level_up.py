@@ -14,8 +14,6 @@ from the_tale.game.postponed_tasks import ComplexChangeTask
 
 from the_tale.game.cards.tests.helpers import CardsTestMixin
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 
 class LevelUpTest(testcase.TestCase, CardsTestMixin):
     CARD = LevelUp

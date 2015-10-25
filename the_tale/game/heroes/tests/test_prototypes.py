@@ -39,7 +39,6 @@ from the_tale.game.mobs.storage import mobs_storage
 
 from the_tale.game.bills import conf as bills_conf
 
-from the_tale.game.heroes.prototypes import HeroPrototype, HeroPreferencesPrototype
 from the_tale.game.heroes.habilities import ABILITY_TYPE, ABILITIES, battle, ABILITY_AVAILABILITY
 from the_tale.game.heroes.conf import heroes_settings
 from the_tale.game.heroes import relations

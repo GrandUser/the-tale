@@ -13,7 +13,6 @@ from the_tale.accounts.prototypes import AccountPrototype
 from the_tale.accounts.clans.prototypes import ClanPrototype
 
 from the_tale.game.heroes.models import Hero
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game.ratings.conf import ratings_settings
 from the_tale.game.ratings.models import RatingValues, RatingPlaces

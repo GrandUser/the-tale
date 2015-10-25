@@ -7,7 +7,6 @@ from the_tale.common.utils import testcase
 from the_tale.accounts.prototypes import AccountPrototype
 from the_tale.accounts.logic import register_user
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game.actions import prototypes as actions_prototypes
 from the_tale.game.actions import meta_actions

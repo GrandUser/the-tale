@@ -14,8 +14,6 @@ from the_tale.common import postponed_tasks
 
 from the_tale.accounts.prototypes import AccountPrototype
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.prototypes import SupervisorTaskPrototype
 
 from the_tale.game.pvp.conf import pvp_settings

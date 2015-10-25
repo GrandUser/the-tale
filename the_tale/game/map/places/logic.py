@@ -16,7 +16,6 @@ from the_tale.game.chronicle import prototypes as chronicle_prototypes
 
 from the_tale.game.map import conf as map_conf
 
-from the_tale.game.heroes import prototypes as heroes_prototypes
 from the_tale.game.heroes.preferences import HeroPreferences
 
 from the_tale.game.persons import storage as persons_storage

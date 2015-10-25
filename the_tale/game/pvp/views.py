@@ -16,7 +16,6 @@ from the_tale.accounts.clans.prototypes import ClanPrototype
 
 from the_tale.game.conf import game_settings
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 from the_tale.game.heroes.models import Hero
 from the_tale.game.heroes.relations import EQUIPMENT_SLOT
 

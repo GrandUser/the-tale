@@ -12,8 +12,6 @@ from the_tale.game.prototypes import TimePrototype
 from the_tale.game.pvp.tests.helpers import PvPTestsMixin
 from the_tale.game.pvp.models import BATTLE_1X1_STATE
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 
 class LogicTests(testcase.TestCase):
 

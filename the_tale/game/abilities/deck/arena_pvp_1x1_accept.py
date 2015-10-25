@@ -7,7 +7,6 @@ from the_tale.game.pvp.prototypes import Battle1x1Prototype
 from the_tale.game.abilities.prototypes import AbilityPrototype
 from the_tale.game.abilities.relations import ABILITY_TYPE
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 from the_tale.game.heroes.relations import HABIT_CHANGE_SOURCE
 
 from the_tale.game.postponed_tasks import ComplexChangeTask

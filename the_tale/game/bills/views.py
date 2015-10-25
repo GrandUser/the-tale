@@ -16,8 +16,6 @@ from the_tale.common.utils.decorators import login_required, lazy_property
 from the_tale.accounts.prototypes import AccountPrototype
 from the_tale.accounts.views import validate_fast_account, validate_ban_game
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.map.places.storage import places_storage
 
 from .prototypes import BillPrototype, VotePrototype

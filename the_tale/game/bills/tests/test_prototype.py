@@ -14,7 +14,6 @@ from the_tale.game import names
 from the_tale.game.prototypes import TimePrototype
 from the_tale.game.balance import constants as c
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game.bills.models import Actor
 from the_tale.game.bills import relations

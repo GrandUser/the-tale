@@ -6,8 +6,6 @@ from the_tale.common.utils.resources import Resource
 from the_tale.common.utils.decorators import login_required
 from the_tale.common.utils import api
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.abilities.deck import ABILITIES
 from the_tale.game.abilities.relations import ABILITY_TYPE
 

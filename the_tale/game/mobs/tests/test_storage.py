@@ -15,7 +15,6 @@ from the_tale.game import relations as game_relations
 from the_tale.game.map import relations as map_relations
 from the_tale.game.actions import relations as actions_relations
 
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game.mobs.storage import mobs_storage
 from the_tale.game.mobs.relations import MOB_RECORD_STATE

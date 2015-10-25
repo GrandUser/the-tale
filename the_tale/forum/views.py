@@ -334,8 +334,6 @@ class ThreadPageData(object):
 
     def initialize(self, account, thread, page, inline=False):
 
-        from the_tale.game.heroes.prototypes import HeroPrototype
-
         self.account = account
         self.thread = thread
 

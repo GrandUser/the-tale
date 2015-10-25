@@ -6,8 +6,6 @@ from the_tale.game.logic import create_test_map
 from the_tale.game.prototypes import SupervisorTaskPrototype
 from the_tale.game import exceptions
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.pvp.prototypes import Battle1x1Prototype
 from the_tale.game.pvp.models import Battle1x1, BATTLE_1X1_STATE
 

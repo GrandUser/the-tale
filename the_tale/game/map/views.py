@@ -11,8 +11,6 @@ from the_tale.accounts import views as accounts_views
 
 from the_tale.game import relations as game_relations
 
-from the_tale.game.heroes.prototypes import HeroPrototype
-
 from the_tale.game.persons import relations as persons_relations
 
 from the_tale.game.map.storage import map_info_storage

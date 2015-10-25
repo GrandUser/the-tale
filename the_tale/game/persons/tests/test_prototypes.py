@@ -10,7 +10,6 @@ from the_tale.game import names
 
 from the_tale.game.prototypes import TimePrototype
 from the_tale.game.logic import create_test_map
-from the_tale.game.heroes.prototypes import HeroPrototype
 
 from the_tale.game.map.places.prototypes import BuildingPrototype
 
