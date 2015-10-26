@@ -1,6 +1,5 @@
 # coding: utf-8
 import math
-import random
 
 from the_tale.game.balance import constants as c
 
@@ -216,18 +215,6 @@ class Position(object):
         if place is None:
             place = self.get_nearest_place()
         return place
-
-    def is_battle_start_needed(self):
-        dominant_place = self.get_dominant_place()
-
-        if dominant_place is not None:
-            battles_per_turn = 1.0 - dominant_place.safety
-        else:
-            battles_per_turn = c.BATTLES_PER_TURN + c.WHILD_BATTLES_PER_TURN_BONUS
-
-        battles_per_turn = min(c.MAX_BATTLES_PER_TURN, max(0, battles_per_turn + self.hero.battles_per_turn_summand))
-
-        return random.uniform(0, 1) <=  battles_per_turn
 
     @classmethod
     def raw_transport(cls):

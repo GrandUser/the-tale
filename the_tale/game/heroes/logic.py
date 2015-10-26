@@ -106,10 +106,13 @@ def load_hero(hero_id=None, account_id=None, hero_model=None):
 
     # TODO: get values instead model
     # TODO: check that load_hero everywhere called with correct arguments
-    if hero_id is not None:
-        hero_model = models.Hero.objects.get(id=hero_id)
-    elif account_id is not None:
-        hero_model = models.Hero.objects.get(account_id=account_id)
+    try:
+        if hero_id is not None:
+            hero_model = models.Hero.objects.get(id=hero_id)
+        elif account_id is not None:
+            hero_model = models.Hero.objects.get(account_id=account_id)
+    except models.Hero.DoesNotExist:
+        return None
 
     data = s11n.from_json(hero_model.data)
 
@@ -268,6 +271,9 @@ def save_hero(hero, new=False):
     hero.journal.updated = False
     hero.actions.updated = False
     hero.preferences.updated = False
+
+    hero.saved_at_turn = arguments['saved_at_turn']
+    hero.saved_at = arguments['saved_at']
 
 
 def dress_new_hero(hero):

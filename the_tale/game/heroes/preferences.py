@@ -20,7 +20,6 @@ from . import relations
 from . import models
 
 
-
 class _PreferencesMetaclass(type):
 
     @classmethod
@@ -210,7 +209,7 @@ class HeroPreferences(object):
         if all:
             filter |= django_models.Q(hero__active_state_end_at__gte=current_time)
 
-        return models.HeroPreferences._model_class.objects.filter(filter, hero__is_fast=False, hero__ban_state_end_at__lt=current_time)
+        return models.HeroPreferences.objects.filter(filter, hero__is_fast=False, hero__ban_state_end_at__lt=current_time)
 
     @classmethod
     def _heroes_query(cls, all):
@@ -247,15 +246,18 @@ class HeroPreferences(object):
 
     @classmethod
     def get_friends_of(cls, person, all):
-        return [HeroPrototype(model=record) for record in cls._heroes_query(all=all).filter(heropreferences__friend_id=person.id)]
+        from . import logic
+        return [logic.load_hero(hero_model=record) for record in cls._heroes_query(all=all).filter(heropreferences__friend_id=person.id)]
 
     @classmethod
     def get_enemies_of(cls, person, all):
-        return [HeroPrototype(model=record) for record in cls._heroes_query(all=all).filter(heropreferences__enemy_id=person.id)]
+        from . import logic
+        return [logic.load_hero(hero_model=record) for record in cls._heroes_query(all=all).filter(heropreferences__enemy_id=person.id)]
 
     @classmethod
     def get_citizens_of(cls, place, all):
-        return [HeroPrototype(model=record) for record in cls._heroes_query(all=all).filter(heropreferences__place_id=place.id)]
+        from . import logic
+        return [logic.load_hero(hero_model=record) for record in cls._heroes_query(all=all).filter(heropreferences__place_id=place.id)]
 
     @classmethod
     def count_habit_values(cls, place, all):

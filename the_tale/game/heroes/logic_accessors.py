@@ -24,6 +24,7 @@ from . import conf
 
 
 class LogicAccessorsMixin(object):
+    __slots__ = ('_cached_modifiers',)
 
     def reset_accessors_cache(self):
         if not hasattr(self, '_cached_modifiers'):
@@ -110,6 +111,19 @@ class LogicAccessorsMixin(object):
     # checkers
     ################################
 
+    def is_battle_start_needed(self):
+        dominant_place = self.position.get_dominant_place()
+
+        if dominant_place is not None:
+            battles_per_turn = 1.0 - dominant_place.safety
+        else:
+            battles_per_turn = c.BATTLES_PER_TURN + c.WHILD_BATTLES_PER_TURN_BONUS
+
+        battles_per_turn = min(c.MAX_BATTLES_PER_TURN, max(0, battles_per_turn + self.battles_per_turn_summand))
+
+        return random.uniform(0, 1) <=  battles_per_turn
+
+
     def can_be_healed(self, strict=False):
         if strict:
             return self.is_alive and self.max_health > self.health
@@ -166,7 +180,7 @@ class LogicAccessorsMixin(object):
 
     @property
     def is_ui_caching_required(self):
-        return (datetime.datetime.now() - self._model.ui_caching_started_at).total_seconds() < conf.heroes_settings.UI_CACHING_TIME
+        return (datetime.datetime.now() - self.ui_caching_started_at).total_seconds() < conf.heroes_settings.UI_CACHING_TIME
 
     @classmethod
     def is_ui_continue_caching_required(self, ui_caching_started_at):

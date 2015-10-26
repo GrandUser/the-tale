@@ -20,7 +20,7 @@ from the_tale.game.map.places.storage import places_storage
 from the_tale.game.balance import formulas as f
 from the_tale.game.balance import constants as c
 
-from the_tale.game.prototypes import TimePrototype
+from the_tale.game.prototypes import TimePrototype, GameState
 from the_tale.game import relations as game_relations
 
 from . import relations
@@ -86,7 +86,11 @@ class Hero(logic_accessors.LogicAccessorsMixin,
                  'equipment',
                  'actual_bills',
 
-                 'utg_name')
+                 'utg_name',
+
+                 # mames mixin
+                 '_utg_name_form__lazy',
+                 '_name__lazy')
 
 
     _bidirectional = ()
@@ -250,7 +254,7 @@ class Hero(logic_accessors.LogicAccessorsMixin,
         return bonus
 
     def reset_level(self):
-        self._model.level = 1
+        self.level = 1
         self.abilities.reset()
 
     def randomized_level_up(self, increment_level=False):
@@ -353,7 +357,7 @@ class Hero(logic_accessors.LogicAccessorsMixin,
         self.energy += value
 
         if self.energy < 0:
-            self.energy_bonus += self._model.energy
+            self.energy_bonus += self.energy
             self.energy = 0
 
         elif self.energy > self.energy_maximum:
@@ -414,7 +418,9 @@ class Hero(logic_accessors.LogicAccessorsMixin,
 
         self.companion = companion
 
-        self.companion.on_settupped()
+        if self.companion:
+            self.companion._hero = self
+            self.companion.on_settupped()
 
     def remove_companion(self):
         self.companion = None
@@ -485,7 +491,7 @@ class Hero(logic_accessors.LogicAccessorsMixin,
         self.premium_state_end_at = premium_end_at
         self.ban_state_end_at = ban_end_at
         self.might = might
-        self.actual_bills = s11n.to_json(actual_bills)
+        self.actual_bills = actual_bills
 
     def on_highlevel_data_updated(self):
         if self.preferences.friend is not None and self.preferences.friend.out_game:
@@ -669,11 +675,12 @@ class Hero(logic_accessors.LogicAccessorsMixin,
 
     @classmethod
     def cached_ui_info_for_hero(cls, account_id, recache_if_required, patch_turns, for_last_turn):
+        from . import logic
 
         data = cache.get(cls.cached_ui_info_key_for_hero(account_id))
 
         if data is None:
-            hero = cls.get_by_account_id(account_id)
+            hero = logic.load_hero(account_id=account_id)
             data = hero.ui_info(actual_guaranteed=False)
 
         cls.modify_ui_info_with_turn(data, for_last_turn=for_last_turn)

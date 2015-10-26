@@ -55,7 +55,7 @@ class CurrentHeroProcessor(dext_views.BaseViewProcessor):
             context.account_hero = None
             return
 
-        context.account_hero = prototypes.HeroPrototype.get_by_account_id(context.account.id)
+        context.account_hero = logic.load_hero(account_id=context.account.id)
 
 
 def split_list(items):
@@ -69,7 +69,7 @@ def split_list(items):
 
 class HeroResource(Resource):
 
-    @validate_argument('hero', logic.load_hero, 'heroes', u'Неверный идентификатор героя')
+    @validate_argument('hero', lambda hero_id: logic.load_hero(hero_id=int(hero_id)), 'heroes', u'Неверный идентификатор героя')
     def initialize(self, hero=None, *args, **kwargs):
         super(HeroResource, self).initialize(*args, **kwargs)
         self.hero = hero
@@ -91,7 +91,7 @@ class HeroResource(Resource):
     @login_required
     @handler('my-hero', method='get')
     def my_hero(self):
-        hero = prototypes.HeroPrototype.get_by_account_id(self.account.id)
+        hero = logic.load_hero(account_id=self.account.id)
         return self.redirect(reverse('game:heroes:show', args=[hero.id]))
 
 

@@ -12,6 +12,8 @@ from the_tale.game.heroes.habilities import nonbattle
 from the_tale.game.heroes.relations import ITEMS_OF_EXPENDITURE
 from the_tale.game.heroes.relations import MODIFIERS
 
+from .. import logic
+
 
 class HabilitiesNonBattleTest(testcase.TestCase):
 
@@ -19,8 +21,8 @@ class HabilitiesNonBattleTest(testcase.TestCase):
         super(HabilitiesNonBattleTest, self).setUp()
         create_test_map()
 
-        result, account_id, bundle_id = register_user('test_user')
-        self.hero = HeroPrototype.get_by_account_id(account_id)
+        account = self.accounts_factory.create_account()
+        self.hero = logic.load_hero(account_id=account.id)
 
     def tearDown(self):
         pass
