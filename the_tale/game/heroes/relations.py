@@ -135,7 +135,11 @@ class EQUIPMENT_SLOT(DjangoEnum):
                 ('CLOAK', 6, u'плащ', ARTIFACT_TYPE.CLOAK, None),
                 ('PANTS', 7, u'штаны', ARTIFACT_TYPE.PANTS, 'default_pants'),
                 ('BOOTS', 8, u'сапоги', ARTIFACT_TYPE.BOOTS, 'default_boots'),
-                ('RING', 10, u'кольцо', ARTIFACT_TYPE.RING, '') )
+                ('RING', 10, u'кольцо', ARTIFACT_TYPE.RING, None) )
+
+    @classmethod
+    def default_uids(cls):
+        return [record.default for record in cls.records if record.default is not None]
 
 
 class MODIFIERS(DjangoEnum):

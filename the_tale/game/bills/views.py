@@ -18,6 +18,8 @@ from the_tale.accounts.views import validate_fast_account, validate_ban_game
 
 from the_tale.game.map.places.storage import places_storage
 
+from the_tale.game.heroes import logic as heroes_logic
+
 from .prototypes import BillPrototype, VotePrototype
 from .conf import bills_settings
 from .models import Bill, Vote
@@ -51,7 +53,7 @@ def argument_to_bill_state(value): return BILL_STATE(int(value))
 class BillResource(Resource):
 
     @lazy_property
-    def hero(self): return HeroPrototype.get_by_account_id(self.account.id)
+    def hero(self): return heroes_logic.load_hero(account_id=self.account.id)
 
     @property
     def can_participate_in_politics(self):

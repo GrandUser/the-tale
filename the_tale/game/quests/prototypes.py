@@ -254,8 +254,8 @@ NO_QUEST_INFO__OUT_PLACE = QuestInfo(type='no-quest',
 
 class QuestPrototype(object):
 
-    def __init__(self, knowledge_base, quests_stack=None, created_at=None, states_to_percents=None):
-        self.hero = None
+    def __init__(self, knowledge_base, quests_stack=None, created_at=None, states_to_percents=None, hero=None):
+        self.hero = hero
         self.quests_stack = [] if quests_stack is None else quests_stack
         self.knowledge_base = knowledge_base
         self.machine = Machine(knowledge_base=knowledge_base,

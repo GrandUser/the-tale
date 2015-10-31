@@ -17,6 +17,8 @@ from the_tale.accounts.conf import accounts_settings
 
 from the_tale.accounts.clans.conf import clans_settings
 
+from the_tale.game.heroes import logic as heroes_logic
+
 from the_tale.finances.shop.postponed_tasks import BuyPremium, BuyPermanentPurchase
 from the_tale.finances.shop.goods import PremiumDays, PermanentPurchase
 from the_tale.finances.shop import exceptions
@@ -37,7 +39,7 @@ class PremiumDaysTests(testcase.TestCase):
         result, account_id, bundle_id = register_user('test_user', 'test_user@test.com', '111111')
         self.account = AccountPrototype.get_by_id(account_id)
 
-        self.hero = HeroPrototype.get_by_account_id(account_id)
+        self.hero = heroes_logic.load_hero(account_id=account_id)
 
         self.purchase = PremiumDays(uid='premium-days-uid',
                                     name=u'premium-days-name',
@@ -122,7 +124,7 @@ class PermanentPurchaseTests(testcase.TestCase):
         result, account_id, bundle_id = register_user('test_user', 'test_user@test.com', '111111')
 
         self.account = AccountPrototype.get_by_id(account_id)
-        self.hero = HeroPrototype.get_by_account_id(account_id)
+        self.hero = heroes_logic.load_hero(account_id=account_id)
 
         self.purchase = PermanentPurchase(uid=u'clan-creation-rights',
                                           name=self.PURCHASE_TYPE.text,

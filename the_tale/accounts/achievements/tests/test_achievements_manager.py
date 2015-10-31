@@ -13,6 +13,8 @@ from the_tale.accounts.personal_messages.prototypes import MessagePrototype
 from the_tale.accounts.achievements.relations import ACHIEVEMENT_GROUP, ACHIEVEMENT_TYPE
 from the_tale.accounts.achievements.prototypes import AchievementPrototype, AccountAchievementsPrototype, GiveAchievementTaskPrototype
 
+from the_tale.game.heroes import logic as heroes_logic
+
 
 from the_tale.game.logic import create_test_map
 
@@ -74,9 +76,9 @@ class AchievementsManagerTests(testcase.TestCase):
 
         self.assertFalse(self.account_achievements_1.has_achievement(self.achievement_3))
         self.assertFalse(account_achievements_2.has_achievement(self.achievement_3))
-        hero = HeroPrototype.get_by_account_id(self.account_1.id)
+        hero = heroes_logic.load_hero(account_id=self.account_1.id)
         hero.statistics.change_pve_deaths(self.achievement_3.barrier)
-        hero.save()
+        heroes_logic.save_hero(hero)
 
         with self.check_not_changed(MessagePrototype._db_count):
             self.worker.add_achievements()

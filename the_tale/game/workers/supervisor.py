@@ -10,6 +10,8 @@ from the_tale.common import postponed_tasks
 
 from the_tale.accounts.models import Account
 
+from the_tale.game.heroes import logic as heroes_logic
+
 from the_tale.game import exceptions
 from the_tale.game import prototypes
 from the_tale.game import relations
@@ -123,7 +125,7 @@ class Worker(BaseWorker):
 
     def choose_logic_worker_to_dispatch(self, account_id):
 
-        hero = heroes_prototypes.HeroPrototype.get_by_account_id(account_id)
+        hero = heroes_logic.load_hero(account_id=account_id)
 
         bundle_id = hero.actions.current_action.bundle_id
 

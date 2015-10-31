@@ -15,6 +15,8 @@ from the_tale.finances.shop import relations
 
 from the_tale.accounts.third_party import views as third_party_views
 
+from the_tale.game.heroes import logic as heroes_logic
+
 ########################################
 # processors definition
 ########################################
@@ -60,7 +62,7 @@ def index(context):
 
 @resource('shop', method='get')
 def shop(context):
-    hero = HeroPrototype.get_by_account_id(context.account.id)
+    hero = heroes_logic.load_hero(account_id=context.account.id)
 
     if context.account.is_premium:
         featured_group = relations.GOODS_GROUP.CHEST

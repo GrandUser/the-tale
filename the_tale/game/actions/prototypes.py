@@ -105,12 +105,11 @@ class ActionBase(object):
                  info_link=None,
                  meta_action=None,
                  replane_required=False,
-                 meta_action_id=None # TODO: remove in 0.3.21
-                ):
+                 hero=None):
 
         self.updated = False
 
-        self.hero = None
+        self.hero = hero
 
         self.description = description
 
@@ -845,7 +844,7 @@ class ActionMoveToPrototype(ActionBase):
             self.teleport(c.ANGEL_HELP_TELEPORT_DISTANCE, create_inplace_action=True)
             return
 
-        move_speed = self.hero.position.modify_move_speed(self.hero.move_speed)
+        move_speed = self.hero.modify_move_speed(self.hero.move_speed)
 
         delta = move_speed / self.hero.position.road.length
 
@@ -874,7 +873,7 @@ class ActionMoveToPrototype(ActionBase):
             ActionRegenerateEnergyPrototype.create(hero=self.hero)
             self.state = self.STATE.REGENERATE_ENERGY
 
-        elif self.hero.position.is_battle_start_needed():
+        elif self.hero.is_battle_start_needed():
             mob = mobs_storage.create_mob_for_hero(self.hero)
             ActionBattlePvE1x1Prototype.create(hero=self.hero, mob=mob)
             self.state = self.STATE.BATTLE
@@ -1734,7 +1733,7 @@ class ActionMoveNearPlacePrototype(ActionBase):
             ActionRegenerateEnergyPrototype.create(hero=self.hero)
             self.state = self.STATE.REGENERATE_ENERGY
 
-        elif self.hero.position.is_battle_start_needed():
+        elif self.hero.is_battle_start_needed():
             mob = mobs_storage.create_mob_for_hero(self.hero)
             ActionBattlePvE1x1Prototype.create(hero=self.hero, mob=mob)
             self.state = self.STATE.BATTLE
@@ -1752,7 +1751,7 @@ class ActionMoveNearPlacePrototype(ActionBase):
             if self.hero.position.subroad_len() == 0:
                 self.hero.position.percents += 0.1
             else:
-                move_speed = self.hero.position.modify_move_speed(self.hero.move_speed)
+                move_speed = self.hero.modify_move_speed(self.hero.move_speed)
                 delta = move_speed / self.hero.position.subroad_len()
                 self.hero.position.percents += delta
 
@@ -1822,14 +1821,6 @@ class ActionRegenerateEnergyPrototype(ActionBase):
     ###########################################
     # Object operations
     ###########################################
-
-    # TODO: remove in v0.3.21
-    @classmethod
-    def deserialize(cls, hero, data):
-        obj = super(ActionRegenerateEnergyPrototype, cls).deserialize(hero, data)
-        if obj.textgen_id is None:
-            obj.textgen_id = 'action_regenerate_energy_%s' % random.choice(hero.preferences.energy_regeneration_type.linguistics_slugs)
-        return obj
 
     @classmethod
     def _create(cls, hero, bundle_id):

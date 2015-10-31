@@ -1,6 +1,9 @@
 # coding: utf-8
 from the_tale.common.utils.workers import BaseWorker
 
+from the_tale.game.heroes import logic as heroes_logic
+from the_tale.game.heroes import models as heroes_models
+
 from the_tale.accounts.achievements.prototypes import GiveAchievementTaskPrototype, AccountAchievementsPrototype
 from the_tale.accounts.achievements.storage import achievements_storage
 
@@ -50,7 +53,7 @@ class Worker(BaseWorker):
             return (AccountPrototype(model=account_model) for account_model in AccountPrototype._db_all())
 
         if achievement.type.source.is_GAME_OBJECT:
-            return (HeroPrototype(model=hero_model) for hero_model in HeroPrototype._db_all())
+            return (heroes_logic.load_hero(hero_model=hero_model) for hero_model in heroes_models.Hero.objects.all().iterator())
 
     def spread_achievement(self, achievement):
         self.logger.info('spread achievement %d' % achievement.id)

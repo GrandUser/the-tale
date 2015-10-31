@@ -43,6 +43,7 @@ from the_tale.game.companions import relations as companions_relations
 
 from the_tale.game.heroes import relations as heroes_relations
 from the_tale.game.heroes import logic as heroes_logic
+from the_tale.game.heroes import objects as heroes_objects
 
 
 @places_storage.postpone_version_update
@@ -118,7 +119,7 @@ def _form_game_account_info(game_time, account, in_pvp_queue, is_own, client_tur
              'hero': None,
              'in_pvp_queue': in_pvp_queue }
 
-    hero_data = HeroPrototype.cached_ui_info_for_hero(account_id=account.id,
+    hero_data = heroes_objects.Hero.cached_ui_info_for_hero(account_id=account.id,
                                                       recache_if_required=is_own,
                                                       patch_turns=client_turns,
                                                       for_last_turn=(not is_own))

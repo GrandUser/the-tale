@@ -4,7 +4,6 @@ import time
 import random
 
 from dext.common.utils import cache
-from dext.common.utils import s11n
 
 from the_tale import amqp_environment
 
@@ -581,7 +580,7 @@ class Hero(logic_accessors.LogicAccessorsMixin,
                 self.next_spending == other.next_spending and
                 self.position == other.position and
                 self.statistics == other.statistics and
-                self.messages == other.messages and
+                self.journal == other.journal and
                 self.diary == other.diary)
 
     ##########################

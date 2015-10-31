@@ -102,6 +102,10 @@ def hero_statistics_from_model(hero_model):
                                  gifts_returned=hero_model.stat_gifts_returned)
 
 
+def load_heroes_by_account_ids(account_ids):
+    heroes_models = models.Hero.objects.filter(account_id__in=account_ids)
+    return [load_hero(hero_model=model) for model in heroes_models]
+
 def load_hero(hero_id=None, account_id=None, hero_model=None):
 
     # TODO: get values instead model
@@ -111,6 +115,8 @@ def load_hero(hero_id=None, account_id=None, hero_model=None):
             hero_model = models.Hero.objects.get(id=hero_id)
         elif account_id is not None:
             hero_model = models.Hero.objects.get(account_id=account_id)
+        elif hero_model is None:
+            return None
     except models.Hero.DoesNotExist:
         return None
 
